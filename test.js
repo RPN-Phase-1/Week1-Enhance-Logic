@@ -1,32 +1,74 @@
-function changeMe(arr) {
-  for (let i = 0; i < arr.length; i++){
-   let name = arr[i][0] + " " + arr[i][1]
-   let umur = 0;
-   if ((2023 - arr[i][3]).toString() === 'NaN'){
-      umur = 'Invalid Birth Year'
-   } else {
-      umur = 2023 - arr[i][3]
-   }
-   let profile = {
-      firstName: arr[i][0],
-      lastName: arr[i][1],
-      gender: arr[i][2],
-      age: umur
-   }
-   console.log(`${name}:`)
-   console.log(profile)
-  }
-  // you can only write your code here!
+class Graph
+{
+     
+    // Constructor
+    constructor(v)
+    {
+        this.V = v;
+        this.adj = new Array(v);
+        for(let i = 0; i < v; i++)
+            this.adj[i] = [];
+    }
+     
+    // Function to add an edge into the graph
+    addEdge(v, w)
+    {
+         
+        // Add w to v's list.
+        this.adj[v].push(w);
+    }
+    // A function used by DFS
+    DFSUtil(v, visited)
+    {
+         
+        // Mark the current node as visited and print it
+        visited[v] = true;
+        console.log(v);
+  
+        // Recur for all the vertices adjacent to this
+        // vertex
+        for(let i of this.adj[v].values())
+        {
+            let n = i
+            if (!visited[n])
+                this.DFSUtil(n, visited);
+        }
+    }
+     
+    // The function to do DFS traversal.
+    // It uses recursive
+    // DFSUtil()
+    DFS(v)
+    {
+         
+        // Mark all the vertices as
+        // not visited(set as
+        // false by default in java)
+        console.log(this.adj)
+        let visited = new Array(this.V);
+        for(let i = 0; i < this.V; i++)
+            visited[i] = false;
+  
+        // Call the recursive helper
+        // function to print DFS
+        // traversal
+        this.DFSUtil(v, visited);
+    }
 }
-// TEST CASES
-changeMe([['Christ', 'Evans', 'Male', 1982], ['Robert', 'Downey', 'Male']]); // 1. Christ Evans:
-// Christ Evans: { firstName: 'Christ',
-//   lastName: 'Evans',
-//   gender: 'Male',
-//   age: 41 } 2023 - 1982 = 41 kan yak wkwk
-// Robert Downey: { firstName: 'Robert',
-//   lastName: 'Downey',
-//   gender: 'Male',
-//   age: 'Invalid Birth Year' }
-
-changeMe([]); // ""
+ 
+// Driver Code
+g = new Graph(4);
+  
+g.addEdge(0, 1);
+g.addEdge(0, 2);
+g.addEdge(1, 2);
+g.addEdge(2, 0);
+g.addEdge(2, 3);
+g.addEdge(3, 3);
+ 
+console.log("Following is Depth First Traversal " +
+               "(starting from vertex 2)");
+ 
+g.DFS(2);
+ 
+// This code is contributed by avanitrachhadiya2155
