@@ -6,26 +6,20 @@ const groupAnagrams = function(strs) {
   // Implementasi akan datang di sini
   let memo = {};
   let result = [];
-  const bubbleSort = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < arr.length - i - 1; j++) {
-        if (arr[j] > arr[j + 1]) {
-          let temp = arr[j];
-          arr[j] = arr[j + 1];
-          arr[j + 1] = temp;
-        }
-      }
+  const hash = (str) => {
+    let result = 0;
+    for (let i = 0; i < str.length; i++) {
+      result += str.charCodeAt(i)
     }
-    return arr;
+    return result;
   }
   for (let i = 0; i < strs.length; i++) {
-    sorted = bubbleSort([...strs[i]]);
-    sortedStr = sorted.join('');
-    if (memo[sortedStr] === undefined) {
-      memo[sortedStr] = result.length;
-      result[memo[sortedStr]] = [strs[i]];
+    const hashed = hash(strs[i]);
+    if (memo[hashed] === undefined) {
+      memo[hashed] = result.length;
+      result[memo[hashed]] = [strs[i]];
     } else {
-      result[memo[sortedStr]].push(strs[i])
+      result[memo[hashed]].push(strs[i])
     }
   }
   return result;
