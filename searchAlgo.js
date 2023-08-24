@@ -1,45 +1,30 @@
 function searchRotatedArray(nums, target) {
-    
-    const hasil = Math.floor((0 + (nums.length-1)) / 2);
-    let left = 0;
-    let right = hasil;
 
 
-    while (left <= right) {
-        const mid = Math.floor((left + right) / 2);
-        
-        if (nums[mid] === target) {
-            return mid; // Mengembalikan indeks elemen yang ditemukan
-        } else if (nums[mid] < target) {
-            left = mid + 1;
-           
-            
-        } else {
-            right = mid - 1;
-            
-        }
-
-    }
-
-     left = hasil+1;
-     right = nums.length - 1;
+   let  left = 0; // value kasih 0 untuk penghitungan tiap array dimulai dari 0
+    let  right = nums.length - 1;// untuk array dimulai 0 jadi perlu di kurang 1 agar jumlahnya pas
    
 
 
-    while (left <= right) {
+    while (left <= right) { // disini melakukan pengecheckan kondisi apakah left lebih kecil dari right
         
-        const mid = Math.floor((left + right) / 2);
-        if (nums[mid] === target) {
+        const mid = Math.floor((left + right) / 2); // mengambil titik target untu dilakukan pemisahan antara kiri dan kanan
+        if (nums[mid] === target) { // kondisi untuk melihat apakah array nums yang di cari sesuai dengan target
             return mid; // Mengembalikan indeks elemen yang ditemukan
-        } else if (nums[mid] < target) {
-            left = mid + 1;
-           
-            
-        } else {
-            right = mid - 1;
-            
+        } else if (nums[left]<=nums[mid]){ // check sebelah kiri dari target yang dibuat(mid), dan condisi dibuat agar bisa mengecheck secara berurut karan kalau tidak berurut akan menghasil -1
+                if(nums[left]<= target && target <nums[mid]){ //butuh membuat kodisi agar dicheck kembali apakah hasil dari num[left] lebih kecil dari target dan harus mengecheck apakah target lebih kecil dari nums[mid]
+                    right =mid-1; // mid dikurangkan agar bisa untuk posisi array berganti
+                }else{ // apabila tidak masuk kondisi 1 lanjut kondisi ini
+                    left=mid+1; // hasilnya yaitu menambahkan mid agar hasil dari left bisa mendapatkan posisi yang lain
+                }
+        }else{// ini kondisi apabila kodisi pertama tidak sesuai jadi nums[left]>=nums[right]
+            if(nums[right]<=target && target < nums[mid]){ // untuk mengabil sebelah kanan, dan melihat bats untuk bagian kanan jaraknya
+                left=mid+1;// hasilnya yaitu menambahkan mid agar hasil dari left bisa mendapatkan posisi yang lain
+            }else{
+                right=mid-1;// mid dikurangkan agar bisa untuk posisi array berganti
+            }
         }
-
+        
     }
 
     return -1; // Mengembalikan -1 jika elemen tidak ditemukan
