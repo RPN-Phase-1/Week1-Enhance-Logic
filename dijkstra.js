@@ -27,7 +27,11 @@ function shortestPathDijkstraArray(graph, start, target) {
     // Iterasi melalui tetangga dari simpul saat ini
     let index = 0;
     for (const weight of graph[currentNode]) {
-      const totalDistance = weight > -1 ? currentDistance + weight : INF;
+      if (weight === -1) {
+        index++
+        continue
+      }
+      const totalDistance = currentDistance + weight;
       // Update jarak terpendek jika totalDistance lebih kecil dari jarak sebelumnya
       if (totalDistance < distances[index]) {
         distances[index] = totalDistance;
