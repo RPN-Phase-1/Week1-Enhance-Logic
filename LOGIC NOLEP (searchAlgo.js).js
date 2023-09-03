@@ -1,7 +1,7 @@
 const searchRotatedArray = (nums, target) => {
     //code
-    let p = pivotSearch(nums,target)
-    let r =binarySearch(nums.sort(),target)
+    let p = pivotSearch(nums,target) //n
+    let r =binarySearch(nums.sort(),target) //(logn)
     if(r == -1){
         return r;
     }
@@ -25,6 +25,7 @@ function pivotSearch(array){
     }
 }
 
+// n (log n)
 
 function binarySearch(array, target) {
     let left = 0;
