@@ -211,9 +211,9 @@ function shortestPath(friends, start, target) {
 
   const dfs = hudzaGraph.dfs("A","E");
   
-  console.log(dfs)
+  //console.log(dfs)
 
-  return 
+  //return 
   
   // Testcase 1
     console.log(shortestPath({
