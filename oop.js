@@ -67,3 +67,28 @@ console.log(car.getInfo()); // Output: Toyota Corolla 2020 Car
 
 const motorcycle = new Motorcycle("Honda", "CBR", 2022);
 console.log(motorcycle.getInfo()); // Output: Honda CBR 2022 Motorcycle
+
+class Student {
+  #name;
+  #age;
+  #grade;
+  constructor(name, age, grade) {
+    this.#name = name;
+    this.#age = age;
+    this.#grade = grade;
+  }
+  getInfo() {
+    let result;
+    if (
+      this.#age >= 6 &&
+      this.#age <= 18 &&
+      this.#grade >= 0 &&
+      this.#grade <= 100
+    ) {
+      result = `Name: ${this.#name}, Age: ${this.#age}, Grade:${this.#grade} `;
+    } else {
+      result = "Invalid Age or Grade";
+    }
+    return result;
+  }
+}
