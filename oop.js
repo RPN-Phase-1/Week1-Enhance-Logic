@@ -31,3 +31,39 @@ console.log(triangle.area()); // Output: 6
 
 const rectangle = new Rectangle(5, 6);
 console.log(rectangle.area()); // Output: 30
+
+class Vehicle {
+  constructor(brand, type, year) {
+    this.brand = brand;
+    this.type = type;
+    this.year = year;
+  }
+
+  getInfo() {
+    return `${this.brand} ${this.type} ${this.year}`;
+  }
+}
+
+class Car extends Vehicle {
+  constructor(brand, type, year) {
+    super(brand, type, year);
+  }
+  getInfo() {
+    return `${super.getInfo()} Car`;
+  }
+}
+
+class Motorcycle extends Vehicle {
+  constructor(brand, type, year) {
+    super(brand, type, year);
+  }
+  getInfo() {
+    return `${super.getInfo()} Motorcycle`;
+  }
+}
+
+const car = new Car("Toyota", "Corolla", 2020);
+console.log(car.getInfo()); // Output: Toyota Corolla 2020 Car
+
+const motorcycle = new Motorcycle("Honda", "CBR", 2022);
+console.log(motorcycle.getInfo()); // Output: Honda CBR 2022 Motorcycle
