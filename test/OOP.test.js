@@ -1,6 +1,5 @@
 import {test, expect, beforeEach, afterEach} from '@jest/globals'
 import {Rectangle, Triangle, Car, Motorcycle, Student} from '../src/OOP'
-import fun from "../src";
 
 test("OOP", () => {
 
