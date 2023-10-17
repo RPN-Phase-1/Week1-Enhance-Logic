@@ -37,13 +37,16 @@ class Graph {
       return;
     }
     this.matrix[row][col] =0;
+
     // arah atas
     this.DFS(row-1,col);
+
     // arah bawah
     this.DFS(row+1,col);
 
     //arah kanan
     this.DFS(row,col+1);
+    
     // arah kiri
     this.DFS(row,col-1);
     
