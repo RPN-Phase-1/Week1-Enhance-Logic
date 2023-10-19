@@ -26,27 +26,20 @@ const groupAnagramsBS = function(strs) {
         }
         strSort.push(arr.join(''))
     }
-    let groups = []
-    for(let a=0;a<strSort.length;a++){
-        if(!groups[strSort[a]]){
-            groups[strSort[a]]=[a]
-        } else {
-            groups[strSort[a]].push(a)
-        }
-    }
+
+    let memo = {};
+    let result = [];
     // console.log(groups)
-    let hasil = []
-    const keys = Object.keys(groups)
-    // console.log(keys)
-    for(let key = 0;key<keys.length;key++){
-        let t = []
-        // console.log(groups[keys[key]])
-        for(let k=0;k<groups[keys[key]].length;k++){
-            t.push(strs[groups[keys[key]][k]])
+    for (let i = 0; i < strs.length; i++) {
+
+        if (memo[strSort[i]] === undefined) {
+          memo[strSort[i]] = result.length;
+          result[memo[strSort[i]]] = [strs[i]];
+        } else {
+          result[memo[strSort[i]]].push(strs[i])
         }
-        hasil.push(t)
-    }
-    return hasil
+      }
+      return result;
     // Implementasi akan datang di sini
 
   };
@@ -106,27 +99,20 @@ const groupAnagramsSS = function(strs) {
         // finish sort
         strSort.push(arr.join(''))
     }
-    let groups = []
-    for(let a=0;a<strSort.length;a++){
-        if(!groups[strSort[a]]){
-            groups[strSort[a]]=[a]
-        } else {
-            groups[strSort[a]].push(a)
-        }
-    }
+
+    let memo = {};
+    let result = [];
     // console.log(groups)
-    let hasil = []
-    const keys = Object.keys(groups)
-    // console.log(keys)
-    for(let key = 0;key<keys.length;key++){
-        let t = []
-        // console.log(groups[keys[key]])
-        for(let k=0;k<groups[keys[key]].length;k++){
-            t.push(strs[groups[keys[key]][k]])
+    for (let i = 0; i < strs.length; i++) {
+
+        if (memo[strSort[i]] === undefined) {
+          memo[strSort[i]] = result.length;
+          result[memo[strSort[i]]] = [strs[i]];
+        } else {
+          result[memo[strSort[i]]].push(strs[i])
         }
-        hasil.push(t)
-    }
-    return hasil
+      }
+      return result;
     // Implementasi akan datang di sini
 
   };
@@ -186,27 +172,20 @@ const groupAnagramsIS = function(strs) {
         // finish sort
         strSort.push(arr.join(''))
     }
-    let groups = []
-    for(let a=0;a<strSort.length;a++){
-        if(!groups[strSort[a]]){
-            groups[strSort[a]]=[a]
-        } else {
-            groups[strSort[a]].push(a)
-        }
-    }
+
+    let memo = {};
+    let result = [];
     // console.log(groups)
-    let hasil = []
-    const keys = Object.keys(groups)
-    // console.log(keys)
-    for(let key = 0;key<keys.length;key++){
-        let t = []
-        // console.log(groups[keys[key]])
-        for(let k=0;k<groups[keys[key]].length;k++){
-            t.push(strs[groups[keys[key]][k]])
+    for (let i = 0; i < strs.length; i++) {
+
+        if (memo[strSort[i]] === undefined) {
+          memo[strSort[i]] = result.length;
+          result[memo[strSort[i]]] = [strs[i]];
+        } else {
+          result[memo[strSort[i]]].push(strs[i])
         }
-        hasil.push(t)
-    }
-    return hasil
+      }
+      return result;
     // Implementasi akan datang di sini
 
   };
@@ -252,27 +231,20 @@ const groupAnagramsMS = function(strs) {
         // finish sort
         strSort.push(arr.join(''))
     }
-    let groups = []
-    for(let a=0;a<strSort.length;a++){
-        if(!groups[strSort[a]]){
-            groups[strSort[a]]=[a]
-        } else {
-            groups[strSort[a]].push(a)
-        }
-    }
+
+    let memo = {};
+    let result = [];
     // console.log(groups)
-    let hasil = []
-    const keys = Object.keys(groups)
-    // console.log(keys)
-    for(let key = 0;key<keys.length;key++){
-        let t = []
-        // console.log(groups[keys[key]])
-        for(let k=0;k<groups[keys[key]].length;k++){
-            t.push(strs[groups[keys[key]][k]])
+    for (let i = 0; i < strs.length; i++) {
+
+        if (memo[strSort[i]] === undefined) {
+          memo[strSort[i]] = result.length;
+          result[memo[strSort[i]]] = [strs[i]];
+        } else {
+          result[memo[strSort[i]]].push(strs[i])
         }
-        hasil.push(t)
-    }
-    return hasil
+      }
+      return result;
     // Implementasi akan datang di sini
 
   };
@@ -315,9 +287,6 @@ function mergeSort(arr) {
     return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
   }
   
-  let array = [12, 11, 13, 5, 6, 7];
-  let sortedArray = mergeSort(array);
-  console.log("Array terurut:", sortedArray);
   
   // Test Case 1
   console.log(groupAnagramsMS(["eat", "tea", "tan", "ate", "nat", "bat"])); 
