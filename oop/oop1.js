@@ -17,31 +17,26 @@ console.log(rectangle.area()); // Output: 30
 
 
 class Shape {
-    area(){
-        return 0
+    constructor(x,y){
+        this.x = x
+        this.y = y
+    }
+
+    area(x, y){
+        return 0 
     }
 }
 
 class Triangle extends Shape{
-    constructor(alas, tinggi){
-        super()
-        this.alas = alas        
-        this.tinggi = tinggi
-    }
-    area(){
-        return (this.alas * this.tinggi) / 2
-    }
+   area(x, y){
+        return (this.x * this.y) / 2
+   }
 }
 
 class Rectangle extends Shape{
-    constructor(panjang, lebar){
-        super()
-        this.panjang = panjang        
-        this.lebar = lebar
-    }
-    area(){
-        return (this.panjang * this.lebar) 
-    }
+    area(x, y){
+        return (this.x * this.y) 
+   }
 } 
 
 const triangle = new Triangle(3, 4);
