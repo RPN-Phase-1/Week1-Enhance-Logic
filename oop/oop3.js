@@ -33,7 +33,7 @@ class Student {
     
      getInfo(){
 
-        if(this._grade<=0 || this._grade>=100 || this._age<=6 || this._age>=18){
+        if(this._grade<0 || this._grade>100 || this._age<6 || this._age>18){
             
             return 'Invalid Age or Grade'
         }else{
