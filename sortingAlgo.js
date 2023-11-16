@@ -38,7 +38,7 @@ const groupAnagrams = function(strs) {
     let res = []
 
     for (let i = 0; i < strs.length; i++) {
-        let sorted = bubbleSort([...strs[i]])
+        let sorted = mergeSort([...strs[i]])
         
         if(obj[sorted]===undefined){
             obj[sorted]=[strs[i]]
@@ -67,7 +67,78 @@ function bubbleSort(strs){
     }
     return strs
   }
+
+  function selectionSort(strs){
+    for (let i = 0; i < strs.length - 1; i++) {
+        let minIndex = i
+        
+        for (let j = i; j < strs.length; j++) {
+            if(strs[j] < strs[minIndex]){
+                minIndex = j
+            }
+            
+        }
+
+        let temp = strs[i]
+        strs[i] = strs[minIndex]
+        strs[minIndex] = temp
+
+
+    }
+    return strs
+  }
+
+  function insertionSort(strs) {
+    for (let i = 1; i < strs.length; i++) {
+        let current = strs[i]
+        let j = i - 1
+
+        while(j>=0 && strs[j] > current){
+            strs[j+1] = strs[j]
+            j--
+        }
+
+        strs[j+1]=current
+        
+    }
+    return strs
+  }
   
+  function mergeSort(strs) {
+    if(strs.length <= 1){
+        return strs
+    }
+    const middle = Math.floor(strs.length / 2);
+    const left = strs.slice(0, middle);
+    const right = strs.slice(middle);
+
+    const sortedLeft = mergeSort(left);
+    const sortedRight = mergeSort(right);
+
+    return merge(sortedLeft, sortedRight);
+  }
+
+  function merge(left, right) {
+    let result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+  
+    while (leftIndex < left.length && rightIndex < right.length) {
+      if (left[leftIndex] < right[rightIndex]) {
+        result.push(left[leftIndex]);
+        leftIndex++;
+      } else {
+        result.push(right[rightIndex]);
+        rightIndex++;
+      }
+    }
+  
+    
+    return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  }
+
+
+
   // Test Case 1
   console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])); 
   // Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
