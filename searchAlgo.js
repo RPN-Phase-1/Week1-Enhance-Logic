@@ -5,12 +5,20 @@ const searchRotatedArray = (nums, target) => {
 
   while (leftPosition <= rightPosition) {
     const midPosition = Math.floor((leftPosition + rightPosition) / 2);
-    if (nums[midPosition] === target) {
-      return midPosition;
-    } else if (nums[midPosition] < target) {
-      leftPosition = midPosition + 1;
+    if (nums[midPosition] === target) return midPosition;
+
+    if (nums[leftPosition] <= nums[midPosition]) {
+      if (nums[leftPosition] <= target && target < nums[midPosition]) {
+        rightPosition = midPosition - 1;
+      } else {
+        leftPosition = midPosition + 1;
+      }
     } else {
-      rightPosition = midPosition - 1;
+      if (nums[rightPosition] >= target && target < nums[midPosition]) {
+        leftPosition = midPosition + 1;
+      } else {
+        rightPosition = midPosition - 1;
+      }
     }
   }
 
