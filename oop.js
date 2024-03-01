@@ -93,7 +93,7 @@ class Student {
   }
 
   getInfo() {
-    if (this.validAge() && this.validScore) {
+    if (this.validAge() && this.validScore()) {
       return `Name: ${this._name}, Age: ${this._age}, Grade: ${this._grade}`;
     }
 
