@@ -12,6 +12,7 @@ function merge(left, right) {
       rightIndex++;
     }
   }
+  return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
 }
 
 function mergeSort(array) {
