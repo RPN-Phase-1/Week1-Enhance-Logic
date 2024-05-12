@@ -1,8 +1,16 @@
+// buat dulu 4 fungsi setiap metode algoritma sorting : bubble, selection, insertion, merge.
+
 //! function bubbleSort
+// intinya double loop, mulai dari elemen 0 sampai elemen sebelum akhir, dibandingkan dengan elemen setelahnya,
+// kalau elemen current lebih besar, geser ke kanan. gitu terus
 const bubbleSort = (str) => {
+  // setiap awal fungsi, jadikan array dulu
   let array = str.split("");
   let n = array.length;
+  // loop dari awal sampai sebelum akhir (n-1)
   for (let i = 0; i < n - 1; i++) {
+    // loop di dalam loop, dari awal sampai sebelum akhir dikurangi i,
+    // karena semakin besar index loop i, elemen paling kanan adalah elemen terbesar
     for (let j = 0; j < n - i - 1; j++) {
       if (array[j] > array[j + 1]) {
         let temp = array[j + 1];
@@ -11,21 +19,28 @@ const bubbleSort = (str) => {
       }
     }
   }
+  // jadikan ke tipe data str lagi
   return [array.join("")];
 };
 
 //! function selectionSort
+// intinya loop dari awal sampai akhir (index i), kalau deep loop nemu elemen terkecil, taruh di index i
 const selectionSort = (str) => {
   let array = str.split("");
   for (let i = 0; i < array.length; i++) {
+    // buat var untuk menampung elemen terkecil dan index nya, dimisalkan dulu index i yg terkecil
     let min = array[i];
     let minIndex = i;
+    // deep loop dari index setelah index i sampai akhir,
+    // karena nanti index i disandingkan dengan index setelahnya
     for (let j = i + 1; j < array.length; j++) {
+      // kalau di deep loop nemu index terkecil, masukkan ke min dan minIndex
       if (array[j] < min) {
         min = array[j];
         minIndex = j;
       }
     }
+    // kalau min dan minIndex nya berubah karena ada elemen yg lebih kecil, tukar dengan ke elemen ke i
     if (min !== array[i]) {
       let temp = array[i];
       array[i] = min;
@@ -37,11 +52,13 @@ const selectionSort = (str) => {
 };
 
 //! function Insertion Sort
+// intinya, loop dari index setelah index awal, sampai index akhir. keluarkan dulu elemen i ke temp var (num),
+// lalu sandingkan dengan elemen2 sebelumnya. kalau ada elemen yg lebih besar, geser elemen tsb ke kanan
 const insertionSort = (str) => {
-  //
   let array = str.split("");
   for (let i = 1; i < array.length; i++) {
     let num = array[i];
+    // deep loop dari elemen ke i ke arah elemen sebelumnya sampai elemen paling awal
     for (let j = i; j >= 0; j--) {
       if (array[j - 1] > num) {
         array[j] = array[j - 1];
@@ -54,12 +71,21 @@ const insertionSort = (str) => {
 };
 
 //! function mergeSort dan merge
-//function merge
+// ada 2 function, function mergeSort(str) untuk membagi jadi array left dan right, dan
+// function merge(left,right) untuk menyortir elemen dari yg terkecil
+// fungsi rekursif, mergeSort() membagi array sampai 1 array, lalu oleh function
+// merge(), left 1 elemen, right 1 elemen, mudah untuk disortir.
+// jadi untuk merge(mergeSort(left), mergeSort(right)), parameter nya sudah kesortir karena fungsi rekursif tadi
+
+// function merge
 const merge = (left, right) => {
-  let result = [];
+  let result = []; // sediakan array hasil
+  // buat index left dan right dari 0
   let leftIndex = 0;
   let rightIndex = 0;
+  // selama leftIndex dan rightIndex tidak lebih dari length nya, tetap lakukan sortir
   while (leftIndex < left.length && rightIndex < right.length) {
+    // urutkan dari elemen paling awal (sudah kesortir)
     if (left[leftIndex] <= right[rightIndex]) {
       result.push(left[leftIndex]);
       leftIndex++;
@@ -68,7 +94,9 @@ const merge = (left, right) => {
       rightIndex++;
     }
   }
-  result = result.concat(...left.slice(leftIndex)).concat(...right.slice(rightIndex));
+  // kalau salah satu array left atau right sudah habis, loop break, lalu concat sisanya ke array result
+  result = result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  // karena ini str, jadikan kembali ke str
   result = result.join("");
   return result;
 };
@@ -87,10 +115,15 @@ const mergeSort = (str) => {
   let right = array.slice(middle);
   right = right.join("");
 
+  // bagi terooss array nya sampai length nya 1, nanti merge ngesortir, trus rekursif in lagi ke merge()
   return merge(mergeSort(left), mergeSort(right));
 };
 
 //! function groupAnagrams
+// ngumpulin semua 4 metode algoritma sorting function
+// intinya, bikim object funcResult, lalu loop array berisi banyak string
+// kalau di dalam object belum ada key hasil sorting, tambahkan dan isi value nya dengan str (strs[i])
+// kalau sudah ada, tinggal push saja. lalu, jadikan object funcResult ke value nya saja
 /**
  * @param {string[]} strs
  * @return {string[][]}
@@ -140,7 +173,7 @@ const groupAnagrams = function (strs) {
   }
   mergeSortResult = Object.values(mergeSortResult);
 
-  // cetak ke console
+  // cetak ke console semuanya
   let print = { bubbleSort: bubbleSortResult, selectionSort: selectionSortResult, insertionSort: insertionSortResult, mergeSort: mergeSortResult };
   for (const key in print) {
     console.log(`${key} :`);
