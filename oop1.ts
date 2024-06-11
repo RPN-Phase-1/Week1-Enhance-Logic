@@ -42,20 +42,12 @@ class Vehicle {
 }
 
 class Car extends Vehicle {
-  public constructor(brand: string, type: string, year: number) {
-    super(brand, type, year);
-  }
-
   public override getInfo() {
     return `${super.getInfo()} Car`;
   }
 }
 
 class Motorcycle extends Vehicle {
-  public constructor(brand: string, type: string, year: number) {
-    super(brand, type, year);
-  }
-
   public override getInfo() {
     return `${super.getInfo()} Motorcycle`;
   }
