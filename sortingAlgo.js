@@ -43,24 +43,20 @@ function merge(left, right) {
 }
 
 const groupAnagrams = function (strs) {
-  const result = [];
+  const result = new Map();
 
   if (strs.length === 1) return [strs];
 
-  let prevStr = strs[0];
-  let groupStr = [prevStr];
-  for (let i = 1; i < strs.length; i++) {
-    const nextStr = strs[i];
-    if (mergeSort(prevStr).join("") === mergeSort(nextStr).join("")) {
-      groupStr.push(nextStr);
+  strs.forEach((str, index) => {
+    const sortedStr = mergeSort(str).join("");
+    if (result.has(sortedStr)) {
+      result.get(sortedStr).push(str);
     } else {
-      result.push(groupStr);
-      groupStr = [nextStr];
+      result.set(sortedStr, [str]);
     }
-    prevStr = nextStr;
-  }
-  result.push(groupStr);
-  return result;
+  });
+
+  return [...result.values()];
 };
 
 // Test Case 1
