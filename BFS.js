@@ -58,23 +58,6 @@ class Graph {
   
       return -1;
     }
-  
-    // Depth-First Search
-    dfs(startValue, targetValue, visited = new Set()) {
-      if (visited.has(startValue)) return false;
-      
-      visited.add(startValue);
-      if (startValue === targetValue) return true;
-  
-      const startNode = this.nodes.get(startValue);
-      for (const neighbor of startNode.edges) {
-        if (this.dfs(neighbor.value, targetValue, visited)) {
-          return true;
-        }
-      }
-  
-      return false;
-    }
   }
   
   class Node {
