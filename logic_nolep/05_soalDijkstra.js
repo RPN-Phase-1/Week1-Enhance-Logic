@@ -118,6 +118,7 @@ function solveQuestions() {
     "km"
   );
   // Expected return: Setelah penambahan jalan baru, jalur terpendek Jakarta ke Surabaya: JKT -> YOG -> SBY dengan jarak 750 km
+  console.table(distances);
 }
 
 // Menjalankan solusi
